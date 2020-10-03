@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-sm-12 col-md-3 col-lg-3">
+    <label>Filter by Individual Number:</label>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search beneficiary by individual number"
+      [(ngModel)]="searchText"
+      name="searchText"
+    />
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-3">
+    <label>Filter by Refered To:</label>
+    <select class="form-control" name="searchTo" id="" [(ngModel)]="searchTo">
+      <option value="Protection">Protection</option>
+      <option value="Livelihood">Livelihood</option>
+    </select>
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-3">
+    <label>Filter by Refered From:</label>
+    <select
+      class="form-control"
+      name="searchFrom"
+      id=""
+      [(ngModel)]="searchFrom"
+    >
+      <option value="Protection">Protection</option>
+      <option value="Livelihood">Livelihood</option>
+    </select>
+  </div>
+</div>
+<div class="table-responsive table-hover table-sm">
+  <table class="table table-condensed cf">
+    <thead class="table-header thead-dark">
+      <tr>
+        <th>Individual number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Project</th>
+        <th>Phone</th>
+        <th>Camp</th>
+        <th>Refered To</th>
+        <th>Refered From</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tr *ngIf="beneficiaries?.length == 0">
+      <td class="font-italic text-center alert alert-info" colspan="6">
+        No records found
+      </td>
+    </tr>
+    <tr *ngFor="let beneficiary of beneficiaries" class="table-list">
+      <td>{{ beneficiary.individual_number }}</td>
+      <td>{{ beneficiary.beneficiary_firstName | uppercase }}</td>
+      <td>{{ beneficiary.beneficiary_lastName | uppercase }}</td>
+      <td>{{ beneficiary.project }}</td>
+      <td>{{ beneficiary.telephone_number }}</td>
+      <td>{{ beneficiary.camp }}</td>
+      <td>{{ beneficiary.reffered_to }}</td>
+      <td>{{ beneficiary.reffered_from }}</td>
+      <td class="text-center">
+        <button
+          class="btn btn-outline-secondary fa fa-external-link"
+          routerLink="../details/{{ beneficiary.id }}"
+        >
+          View
+        </button>
+        <button
+          class="btn btn-outline-info fa fa-pencil-square-o"
+          routerLink="../edit/{{ beneficiary.id }}"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-outline-success fa fa-plus"
+          *ngIf="auth.isLivelihoods() || auth.isAdmin()"
+          routerLink="../../Livelihoods/edit/{{ beneficiary.id }}"
+        >
+          Add Livehoods Intervention
+        </button>
+        <button
+          class="btn btn-outline-success fa fa-plus"
+          *ngIf="auth.isProtection() || auth.isAdmin()"
+          routerLink="../../Protection/edit/{{ beneficiary.id }}"
+        >
+          Add Protection Intervention
+        </button>
+        <button
+          class="btn btn-outline-danger fa fa-trash"
+          mwlConfirmationPopover
+          [popoverTitle]="popoverTitle"
+          [popoverMessage]="popoverMessage"
+          placement="left"
+          (confirm)="confirmClicked = true"
+          (cancel)="cancelClicked = true"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <p>Individual number: {{ _individual_number }}</p>
+      <p>First Name: {{ _firstName }}</p>
+      <p>Last Name: {{ _lastName }}</p>
+      <p>Project: {{ _project }}</p>
+      <p>Camp: {{ _camp }}</p>
+      <p>Telephone: {{ _telephone }}</p>
+    </div>
+  </div>
+</div>
+
+<!--<form action=""></form> -->
+
+<form [formGroup]="interventions" (ngSubmit)="callingFunction()">
+  <br />
+  <h3>Interventions</h3>
+  <input
+    type="text"
+    formControlName="intervention_fk"
+    name="intervention_fk"
+    hidden
+  />
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Type of Intervention:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <select
+        multiple
+        formControlName="intervention"
+        name="intervention"
+        id="intervention"
+      >
+        <option
+          [value]="_intervention.name"
+          *ngFor="let _intervention of intervention"
+          >{{ _intervention.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Enrolment Date:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="date_enroled"
+        name="enroled date"
+        id="enroled date"
+        type="date"
+        class="form-control"
+        placeholder="Enter beneficiary date of enrolement"
+      />
+      <!--<span>{{ _date_enroled }}</span>
+        <span>{{ _date_enroled_formatted }}</span>-->
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Drop Date:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="drop_date"
+        name="drop_date"
+        id="drop_date"
+        type="date"
+        class="form-control"
+        placeholder="Enter beneficiary drop date"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Completion Date:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="completion_date"
+        name="completion_date"
+        id="completion_date"
+        type="date"
+        class="form-control"
+        placeholder="Enter beneficiary completion date"
+      />
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="!interventions.valid"
+  >
+    Save
+  </button>
+
+  <p>Real-time data: {{ intervention.values | json }}</p>
+
+  <p>Your form status is : {{ intervention }}</p>
+</form>

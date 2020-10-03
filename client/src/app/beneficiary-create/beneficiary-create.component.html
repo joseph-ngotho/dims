@@ -1,0 +1,413 @@
+<form [formGroup]="bioSection" (ngSubmit)="callingFunction()">
+  <h3>
+    Bio Details
+  </h3>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Individual Number:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="individual_number"
+        name="name"
+        id="individual number"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary individual number"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">First Name:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="beneficiary_firstName"
+        name="firstname"
+        id="firstname"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary first name"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Last Name:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="beneficiary_lastName"
+        name="lastname"
+        id="lastame"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary first name"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Id Number (if applicable):</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="id_number"
+        name="id number"
+        id="id number"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary ID number if applicable"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Sex:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <select formControlName="sex" name="sex" id="sex">
+        <option [value]="_sex.name" *ngFor="let _sex of sexes"
+          >{{ _sex.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Age:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="age"
+        name="age"
+        id="age"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary age"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Disability status:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <select
+        formControlName="disability_status"
+        name="disability_status"
+        id="disability_status"
+      >
+        <option
+          [value]="_disability.name"
+          *ngFor="let _disability of disability"
+          >{{ _disability.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Type of disability (if applicable):</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="type_disability"
+        name="type disability"
+        id="type disability"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary type of disability if applicable"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Status (Refugee/Host):</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="status"
+        name="type status"
+        id="status"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary status"
+      />
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-lg-6">
+    <label for="">Nationality:</label>
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+        </div>
+      </div>
+      <input
+        formControlName="nationality"
+        name="nationality"
+        id="nationality"
+        type="text"
+        class="form-control"
+        placeholder="Enter beneficiary nationality"
+      />
+    </div>
+  </div>
+
+  <div>
+    <h3><Address></Address> Details</h3>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Benficiary telephone number:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <input
+          formControlName="telephone_number"
+          name="telephone number"
+          id="telephone number"
+          type="text"
+          class="form-control"
+          placeholder="Enter beneficiary telephone number"
+        />
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Camp:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select formControlName="camp" name="camp" id="camp">
+          <option [value]="_camp.name" *ngFor="let _camp of camp"
+            >{{ _camp.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Block:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select formControlName="block" name="block" id="block">
+          <option [value]="_block.name" *ngFor="let _block of block"
+            >{{ _block.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Reffered To:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select
+          formControlName="reffered_to"
+          name="reffered to"
+          id="reffered to"
+        >
+          <option
+            [value]="_refferedto.name"
+            *ngFor="let _refferedto of refferedto"
+            >{{ _refferedto.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Reffered From:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select
+          formControlName="reffered_from"
+          name="reffered to"
+          id="reffered to"
+        >
+          <option
+            [value]="_refferedto.name"
+            *ngFor="let _refferedto of refferedto"
+            >{{ _refferedto.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>Other Details</h3>
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Date Enroled:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <input
+          formControlName="date_enroled"
+          name="enroled date"
+          id="enroled date"
+          type="date"
+          class="form-control"
+          placeholder="Enter beneficiary date of enrolement"
+        />
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Project:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select multiple formControlName="project" name="project" id="project">
+          <option [value]="_project.name" *ngFor="let _project of project"
+            >{{ _project.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Household head:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <select formControlName="hh_head" name="hh head" id="hh hh_head">
+          <option [value]="_hhhead.name" *ngFor="let _hhhead of hhhead"
+            >{{ _hhhead.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Group Name (if a member):</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <input
+          formControlName="group_name"
+          name="group name"
+          id="group name"
+          type="text"
+          class="form-control"
+          placeholder="Enter beneficiary group name if applicable"
+        />
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Household male size:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <input
+          formControlName="hh_male_size"
+          name="hhmalesize"
+          id="hhmalesize"
+          type="text"
+          class="form-control"
+          placeholder="Enter beneficiary household male number "
+        />
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-6">
+      <label for="">Household female size:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true"></i>
+          </div>
+        </div>
+        <input
+          formControlName="hh_female_size"
+          name="hhfemalesize"
+          id="hhfemalesize"
+          type="text"
+          class="form-control"
+          placeholder="Enter beneficiary household female number "
+        />
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!bioSection.valid">
+    Save
+  </button>
+
+  <p>Real-time data: {{ bioSection.value | json }}</p>
+
+  <p>Your form status is : {{ bioSection }}</p>
+</form>

@@ -1,0 +1,63 @@
+<input
+  type="text"
+  placeholder="Search beneficiary by individual number"
+  [(ngModel)]="searchText"
+  name="searchText"
+/>
+<div class="table-responsive table-hover table-sm">
+  <table class="table table-condensed cf">
+    <thead class="table-header thead-dark">
+      <tr>
+        <th>Individual number</th>
+        <th>Name</th>
+        <th>Project</th>
+        <th>Phone</th>
+        <th>Camp</th>
+        <th>Livelihood interventions</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tr *ngIf="interventions?.length == 0">
+      <td class="font-italic text-center alert alert-info" colspan="6">
+        No records found
+      </td>
+    </tr>
+    <tr *ngFor="let intervention of interventions" class="table-list">
+      <td>{{ intervention.individual_number }}</td>
+      <td>
+        {{ intervention.beneficiary_firstName | uppercase }}
+        {{ intervention.beneficiary_lastName | uppercase }}
+      </td>
+      <td>{{ intervention.project }}</td>
+      <td>{{ intervention.telephone_number }}</td>
+      <td>{{ intervention.camp }}</td>
+      <td>{{ intervention.type_support }}</td>
+      <td class="text-center">
+        <button
+          class="btn btn-outline-secondary fa fa-external-link"
+          routerLink="../view/{{ intervention.id_beneficiaries_fk }}"
+        >
+          View
+        </button>
+        <button
+          class="btn btn-outline-info fa fa-pencil-square-o"
+          routerLink="../edit/{{ intervention.id_beneficiaries_fk }}"
+        >
+          Edit
+        </button>
+
+        <button
+          class="btn btn-outline-danger fa fa-trash"
+          mwlConfirmationPopover
+          [popoverTitle]="popoverTitle"
+          [popoverMessage]="popoverMessage"
+          placement="left"
+          (confirm)="confirmClicked = true"
+          (cancel)="cancelClicked = true"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
