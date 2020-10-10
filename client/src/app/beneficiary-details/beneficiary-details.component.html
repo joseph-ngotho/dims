@@ -1,0 +1,75 @@
+<div class="" container-fluid>
+  <div class="row py-5">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Biodata</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <h5>Personal Identification Information</h5>
+              <p><strong>Name:</strong> {{ fname }} {{ lname }}</p>
+              <p><strong>Individual Number:</strong> {{ individualnumber }}</p>
+              <p><strong>Phone Number:</strong> {{ phone }}</p>
+              <p><strong>Gender:</strong> {{ gender }}</p>
+              <p><strong>Age:</strong> {{ age }}</p>
+              <p><strong>Nationality:</strong> {{ nationality }}</p>
+            </div>
+            <div class="col-sm-6">
+              <h5>Additional Information</h5>
+              <p><strong>Status:</strong> {{ status }}</p>
+              <p><strong>Camp:</strong> {{ camp }}</p>
+              <p><strong>House Head:</strong> {{ hhead }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <h6>Interventions</h6>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a
+            class="nav-item nav-link active"
+            id="nav-livelihood-tab"
+            data-toggle="tab"
+            fragment="nav-livelihood"
+            role="tab"
+            aria-controls="nav-livelihood"
+            aria-selected="true"
+            >Livelihood</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="nav-protection-tab"
+            data-toggle="tab"
+            fragment="nav-protection"
+            role="tab"
+            aria-controls="nav-protection"
+            aria-selected="false"
+            >Protection</a
+          >
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="nav-livelihood"
+          role="tabpanel"
+          aria-labelledby="nav-livelihoob-tab"
+        >
+          Livelihood
+        </div>
+        <div
+          class="tab-pane fade"
+          id="nav-profile"
+          role="tabpanel"
+          aria-labelledby="nav-protection-tab"
+        >
+          Protection
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

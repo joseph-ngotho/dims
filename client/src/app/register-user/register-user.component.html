@@ -1,0 +1,85 @@
+<div class="row">
+
+    <div class="col-sm-12">
+        <form [formGroup]="registerForm">
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Name</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    </div>
+                    <input formControlName="name" name="name" id="name" type="text" class="form-control"
+                        placeholder="Enter name">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Title</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                  </div>
+                  <input formControlName="title" name="title" id="title" type="text" class="form-control" 
+                    placeholder="Enter title">
+                </div>
+              </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Department</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    </div>
+                    <select formControlName="department" name="department" id="department">
+                        <option [value]="_department.name" *ngFor="let _department of departments">{{_department.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Email</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    </div>
+                    <input formControlName="email" name="email" id="email" type="text" class="form-control"
+                        placeholder="Enter email">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Password</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    </div>
+                    <input formControlName="password" name="password" id="password" type="password" class="form-control"
+                        placeholder="Enter password">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <label for="">Role</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    </div>
+                    <select formControlName="roles" name="roles" id="roles">
+                        <option [value]="_role.name" *ngFor="let _role of roles">{{_role.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <button class="btn btn-primary" (click)="submit()">Submit</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
