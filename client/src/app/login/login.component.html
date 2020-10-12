@@ -1,10 +1,18 @@
-<div class="col-sm-6">
-    <div class="card">
-        <div class="card-header">
+<div class="container">
+<div class="col-sm-12 d-flex justify-content-center py-5">
+    <div class="card ">
+        <div class="card-header text-center">
             <p>Enter your login credentials</p>
+            <div class="alert alert-info" *ngIf="loading">
+              <img
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              {{loadingMsg}}</div>
+            <div *ngIf="errorMsg" class="alert alert-danger">
+              <p>{{errorMsg}}</p>
+            </div>
         </div>
         <div class="card-body">
-            <form class="form" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+            <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
     
             <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="form-group">
@@ -13,12 +21,19 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" [(ngModel)]="credentials.email" id="email" name="email"
-                    placeholder="Enter your or Email">
+                  <input type="text" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter your Email">
                    <!--<div *ngIf="f.submitted && email.invalid" class="alert
                     alert-danger">
                     <div *ngIf="email.errors.required">Email is required</div>
                   </div>--> 
+                </div>
+                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger validation">
+                  <div class="alertMsg" *ngIf="f.email.errors.required">
+                   Email is required
+                  </div>
+                  <div class="alertMsg" *ngIf="f.email.errors.pattern">
+                   Invalid email pattern 
+                  </div>
                 </div>
               </div>
             </div>
@@ -30,12 +45,14 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
                   </div>
-                  <input type="password" class="form-control" [(ngModel)]="credentials.password" id="password" name="password" placeholder="Enter your password">
-                 <!-- <div *ngIf="f.submitted && password.invalid" class="alert
-                  alert-danger">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                </div>-->
-                </div>
+                  <input type="password" class="form-control" id="password" name="password"
+                  formControlName="password" placeholder="Enter your password">
+                 </div>
+                 <div *ngIf="submitted && f.password.errors" class="alert alert-danger validation">
+                  <div class="alertMsg" *ngIf="f.password.errors.required">
+                   Password is required
+                  </div>
+                   </div>
               </div>
               </div>
         
@@ -50,5 +67,6 @@
         </div>
     
     </div>
+</div>
 </div>
 

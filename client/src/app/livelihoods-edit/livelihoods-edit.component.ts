@@ -109,9 +109,7 @@ export class LivelihoodsEditComponent implements OnInit {
       });
     });
   }
-  date_enroled_formatted(arg0: string, date_enroled_formatted: any) {
-    throw new Error('Method not implemented.');
-  }
+  
 
   callingFunction() {
     console.log(this.interventions.value.intervention.join(','));

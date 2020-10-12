@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { BeneficiaryEditComponent } from './beneficiary-edit/beneficiary-edit.co
 import { BeneficiaryDetailsComponent } from './beneficiary-details/beneficiary-details.component';
 import { LivelihoodsViewComponent } from './livelihoods-view/livelihoods-view.component';
 import { ProtectionViewComponent } from './protection-view/protection-view.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,9 +59,11 @@ import { ProtectionViewComponent } from './protection-view/protection-view.compo
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
+    NgxPaginationModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
     }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

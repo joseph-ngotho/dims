@@ -1,3 +1,4 @@
+import {AuthguardGuard} from './_auth/authguard.guard'
 import { ProtectionViewComponent } from './protection-view/protection-view.component';
 import { BeneficiaryEditComponent } from './beneficiary-edit/beneficiary-edit.component';
 import { ProtectionEditComponent } from './protection-edit/protection-edit.component';
@@ -30,7 +31,7 @@ const routes: Routes = [
       { path: 'create', component: BeneficiaryCreateComponent },
       { path: 'details/:id', component: BeneficiaryDetailsComponent },
       { path: 'edit/:id', component: BeneficiaryEditComponent },
-    ],
+    ],canActivate: [AuthguardGuard],
   },
   {
     path: 'Livelihoods',
@@ -40,7 +41,7 @@ const routes: Routes = [
       { path: 'list', component: LivelihoodsListComponent },
       { path: 'view/:id', component: LivelihoodsViewComponent },
       { path: 'edit/:id', component: LivelihoodsEditComponent },
-    ],
+    ], canActivate: [AuthguardGuard]
   },
   {
     path: 'Protection',
@@ -50,9 +51,9 @@ const routes: Routes = [
       { path: 'list', component: ProtectionListComponent },
       { path: 'view/:id', component: ProtectionViewComponent },
       { path: 'edit/:id', component: ProtectionEditComponent },
-    ],
+    ],canActivate: [AuthguardGuard]
   },
-  { path: 'Register', component: RegisterUserComponent },
+  { path: 'Register', component: RegisterUserComponent, canActivate: [AuthguardGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 

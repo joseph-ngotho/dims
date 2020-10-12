@@ -1,5 +1,6 @@
-<div class="row">
-  <div class="col-sm-12 col-md-3 col-lg-3">
+<div class="container-fluid py-5">
+<div class="row d-flex w-100">
+  <div class="px-3">
     <label>Filter by Individual Number:</label>
     <input
       class="form-control"
@@ -9,14 +10,14 @@
       name="searchText"
     />
   </div>
-  <div class="col-sm-12 col-md-3 col-lg-3">
+  <div class="px-3">
     <label>Filter by Refered To:</label>
     <select class="form-control" name="searchTo" id="" [(ngModel)]="searchTo">
       <option value="Protection">Protection</option>
       <option value="Livelihood">Livelihood</option>
     </select>
   </div>
-  <div class="col-sm-12 col-md-3 col-lg-3">
+  <div class="px-3">
     <label>Filter by Refered From:</label>
     <select
       class="form-control"
@@ -28,8 +29,11 @@
       <option value="Livelihood">Livelihood</option>
     </select>
   </div>
+  <div class="px-2 pt-3">
+    <button class="btn btn-danger" (click)="reset()">Reset</button>
+  </div>
 </div>
-<div class="table-responsive table-hover table-sm">
+<div class="table-responsive table-hover table-sm py-3">
   <table class="table table-condensed cf">
     <thead class="table-header thead-dark">
       <tr>
@@ -49,7 +53,8 @@
         No records found
       </td>
     </tr>
-    <tr *ngFor="let beneficiary of beneficiaries" class="table-list">
+    <!--<tr *ngFor="let beneficiary of beneficiaries | searchBy:{individual_number: searchText} | searchBy:{reffered_to: searchTo} | searchBy:{reffered_from: searchFrom}; let i=index" class="table-list">-->
+      <tr *ngFor="let beneficiary of beneficiaries; let i=index" class="table-list">
       <td>{{ beneficiary.individual_number }}</td>
       <td>{{ beneficiary.beneficiary_firstName | uppercase }}</td>
       <td>{{ beneficiary.beneficiary_lastName | uppercase }}</td>
@@ -99,4 +104,7 @@
       </td>
     </tr>
   </table>
+</div>
+
+
 </div>

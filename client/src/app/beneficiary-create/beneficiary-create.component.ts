@@ -66,15 +66,35 @@ export class BeneficiaryCreateComponent implements OnInit {
     { id: 1, name: 'Yes' },
     { id: 2, name: 'No' },
   ];
+  successMsg: string = "Beneficiary information successfully submitted"
   errorMsg: any;
+
+  individual_num_prefix: string = "DRC"
+
+  test_number: number = 4
+  test_number2: number = 56
+  test_number2Pre: string;
+
 
   constructor(
     private fb: FormBuilder,
     private beneficiariesService: BeneficiariesService
   ) {}
 
+ zeroPad(num, numZeros) {
+    var n = Math.abs(num);
+    var zeros = Math.max(0, numZeros - Math.floor(n).toString().length );
+    var zeroString = Math.pow(10,zeros).toString().substr(1);
+    if( num < 0 ) {
+        zeroString = '-' + zeroString;
+    }
+
+    return zeroString+n;
+}
+
   ngOnInit() {
-    this.bioSection = this.fb.group({
+    
+   this.bioSection = this.fb.group({
       individual_number: [''],
       beneficiary_firstName: [''],
       beneficiary_lastName: [''],
@@ -104,6 +124,18 @@ export class BeneficiaryCreateComponent implements OnInit {
       reffered_from: [''],
       // })
     });
+
+    console.log("Number 1", this.zeroPad(this.test_number,8))
+    this.test_number2Pre = this.individual_num_prefix + "-" + this.zeroPad(this.test_number2,8)
+
+    this.bioSection.patchValue({
+      individual_number:this.test_number2Pre
+    })
+  }
+
+  //get form controls
+  get f(){
+    return this.bioSection.controls
   }
 
   callingFunction() {

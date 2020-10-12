@@ -7,7 +7,7 @@ var mysqlConnection = mysql.createPool({
 host: 'localhost',
 port: '', //3306 on remote server
 user: 'root', //capep
-password: 'Root@root2020', // capep_kenya
+password: '', // capep_kenyaRoot@root2020
 database: 'dims'
 });
 

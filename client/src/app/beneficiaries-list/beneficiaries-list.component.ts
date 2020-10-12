@@ -8,6 +8,7 @@ import { AuthenticationService } from '../_auth/authentication.service';
   styleUrls: ['./beneficiaries-list.component.css'],
 })
 export class BeneficiariesListComponent implements OnInit {
+  p: number = 1
   beneficiaries: any;
 
   public searchText: string;
@@ -29,5 +30,9 @@ export class BeneficiariesListComponent implements OnInit {
     this.beneficiariesService.getBeneficiaries().subscribe((data) => {
       this.beneficiaries = data;
     });
+  }
+
+  reset(){
+    this.ngOnInit()
   }
 }

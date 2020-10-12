@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const mysqlConnection = { }
-const sequelize = new Sequelize ('dims', 'root', 'Root@root2020',{
+const sequelize = new Sequelize ('dims', 'root', '',{
 
 	host: 'localhost',
 	dialect: 'mysql',

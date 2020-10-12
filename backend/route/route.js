@@ -210,9 +210,9 @@ router.delete("/livelihoods/:id", (req, res, next) => {
 //adding new livelihoods dates
 router.post("/livelihoods_dates", (req, res, next) => {
   var newLivelihoodsDate = {
-    date_enroled: req.body.date_enroled,
-    completion_date: req.body.completion_date,
-    drop_date: req.body.drop_date,
+    l_date_enroled: req.body.date_enroled,
+    l_completion_date: req.body.completion_date,
+    l_drop_date: req.body.drop_date,
     id_beneficiaries_fk: req.body.id_beneficiaries_fk,
     id_intervention_fk: req.body.id_intervention_fk,
   };
@@ -234,9 +234,9 @@ router.post("/livelihoods_dates", (req, res, next) => {
 router.put("/livelihoods_dates/:id", (req, res, next) => {
   //logic here
   var updateLivelihoodsDate = {
-    date_enroled: req.body.date_enroled,
-    completion_date: req.body.completion_date,
-    drop_date: req.body.drop_date,
+    l_date_enroled: req.body.date_enroled,
+    l_completion_date: req.body.completion_date,
+    l_drop_date: req.body.drop_date,
     id_beneficiaries_fk: req.body.id_beneficiaries_fk,
     id_intervention_fk: req.body.id_intervention_fk,
   };
@@ -330,9 +330,9 @@ router.delete("protection/:id", (req, res, next) => {
 //adding new protection dates
 router.post("/protection_dates", (req, res, next) => {
   var newProtectionDate = {
-    date_enroled: req.body.date_enroled,
-    completion_date: req.body.completion_date,
-    drop_date: req.body.drop_date,
+    p_date_enroled: req.body.date_enroled,
+    p_completion_date: req.body.completion_date,
+    p_drop_date: req.body.drop_date,
     id_beneficiary_fk: req.body.id_beneficiaries_fk,
     id_intervention_fk: req.body.id_intervention_fk,
   };
@@ -354,9 +354,9 @@ router.post("/protection_dates", (req, res, next) => {
 router.put("/protection_dates/:id", (req, res, next) => {
   //logic here
   var updateProtectionDate = {
-    date_enroled: req.body.date_enroled,
-    completion_date: req.body.completion_date,
-    drop_date: req.body.drop_date,
+    p_date_enroled: req.body.date_enroled,
+    p_completion_date: req.body.completion_date,
+    p_drop_date: req.body.drop_date,
     id_beneficiaries_fk: req.body.id_beneficiaries_fk,
     id_intervention_fk: req.body.id_intervention_fk,
   };
