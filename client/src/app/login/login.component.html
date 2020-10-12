@@ -2,6 +2,7 @@
 <div class="col-sm-12 d-flex justify-content-center py-5">
     <div class="card ">
         <div class="card-header text-center">
+          <h1>LOGIN</h1>
             <p>Enter your login credentials</p>
             <div class="alert alert-info" *ngIf="loading">
               <img
@@ -19,13 +20,10 @@
                 <label for="">Email:<label class="red-text">*</label></label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <div class="input-group-text">@</div>
+                    <div class="input-group-text"><i class="fa fa-user"></i></div>
                   </div>
                   <input type="text" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter your Email">
-                   <!--<div *ngIf="f.submitted && email.invalid" class="alert
-                    alert-danger">
-                    <div *ngIf="email.errors.required">Email is required</div>
-                  </div>--> 
+                   
                 </div>
                 <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger validation">
                   <div class="alertMsg" *ngIf="f.email.errors.required">
@@ -43,7 +41,7 @@
                 <label for="">Password:<label class="red-text">*</label></label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                    <div class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></div>
                   </div>
                   <input type="password" class="form-control" id="password" name="password"
                   formControlName="password" placeholder="Enter your password">

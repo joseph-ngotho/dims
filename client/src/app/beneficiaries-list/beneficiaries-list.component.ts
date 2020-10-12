@@ -33,6 +33,7 @@ export class BeneficiariesListComponent implements OnInit {
   }
 
   reset(){
+    console.log("This test")
     this.ngOnInit()
   }
 }
