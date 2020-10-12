@@ -33,7 +33,8 @@ export class BeneficiariesListComponent implements OnInit {
   }
 
   reset(){
-    console.log("This test")
-    this.ngOnInit()
+    this.beneficiariesService.getBeneficiaries().subscribe((data) => {
+      this.beneficiaries = data;
+    });
   }
 }
