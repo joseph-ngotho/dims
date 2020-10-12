@@ -53,9 +53,10 @@
         No records found
       </td>
     </tr>
-    <!--<tr *ngFor="let beneficiary of beneficiaries | searchBy:{individual_number: searchText} | searchBy:{reffered_to: searchTo} | searchBy:{reffered_from: searchFrom}; let i=index" class="table-list">-->
-      <tr *ngFor="let beneficiary of beneficiaries | searchBy:{individual_number:
-        searchText} | searchBy:{reffered_to: searchTo} | searchBy:{reffered_from: searchFrom}" class="table-list">
+    <!--Comment out this next line and remove comment tag replace with next line-->
+    <tr *ngFor="let beneficiary of beneficiaries" class="table-list">
+      <!--<tr *ngFor="let beneficiary of beneficiaries | searchBy:{individual_number:
+        searchText} | searchBy:{reffered_to: searchTo} | searchBy:{reffered_from: searchFrom}" class="table-list">-->
       <td>{{ beneficiary.individual_number }}</td>
       <td>{{ beneficiary.beneficiary_firstName | uppercase }}</td>
       <td>{{ beneficiary.beneficiary_lastName | uppercase }}</td>
