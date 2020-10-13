@@ -33,7 +33,10 @@
             <a ngbNavLink>Livelihood</a>
               <ng-template ngbNavContent >
                 <div class="pt-3 pl-3">
-                Livelihood interventions
+                  <p><strong>Support received:</strong> {{type_support}}</p>
+                  <p><strong>Enrollment date:</strong> {{l_date_enroled }}</p>
+                  <p><strong>Drop date:</strong> {{l_drop_date}}</p>
+                  <p><strong>Completion date:</strong> {{l_completion_date}}</p>
               </div>
               </ng-template>
           </li>
@@ -41,7 +44,10 @@
             <a ngbNavLink>Protection</a>
               <ng-template ngbNavContent >
                 <div class="pt-3 pl-3">
-                Protection interventions
+                <p><strong>Support received:</strong> {{protection_support_recieved}}</p>
+                <p><strong>Enrollment date:</strong> {{p_date_enroled}}</p>
+                  <p><strong>Drop date:</strong> {{p_drop_date}}</p>
+                  <p><strong>Completion date:</strong> {{p_completion_date}}</p>
               </div>
               </ng-template>
             

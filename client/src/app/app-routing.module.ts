@@ -39,7 +39,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: LivelihoodsListComponent },
-      { path: 'view/:id', component: LivelihoodsViewComponent },
+      { path: 'view/:id', component: BeneficiaryDetailsComponent },
       { path: 'edit/:id', component: LivelihoodsEditComponent },
     ], canActivate: [AuthguardGuard]
   },
@@ -49,12 +49,12 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ProtectionListComponent },
-      { path: 'view/:id', component: ProtectionViewComponent },
+      { path: 'view/:id', component: BeneficiaryDetailsComponent },
       { path: 'edit/:id', component: ProtectionEditComponent },
     ],canActivate: [AuthguardGuard]
   },
   { path: 'Register', component: RegisterUserComponent, canActivate: [AuthguardGuard] },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }, 
 ];
 
 @NgModule({

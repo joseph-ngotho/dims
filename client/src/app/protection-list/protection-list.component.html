@@ -4,7 +4,7 @@
   [(ngModel)]="searchText"
   name="searchText"
 />
-<div class="table-responsive table-hover table-sm">
+<div class="table-responsive table-hover table-sm py-3">
   <table class="table table-condensed cf">
     <thead class="table-header thead-dark">
       <tr>
@@ -35,13 +35,13 @@
       <td class="text-center">
         <button
           class="btn btn-outline-secondary fa fa-external-link"
-          routerLink="../view/{{ intervention.id_beneficiaries_fk }}"
+          routerLink="../view/{{intervention.id_beneficiary }}"
         >
-          View
+          View 
         </button>
         <button
           class="btn btn-outline-info fa fa-pencil-square-o"
-          routerLink="../edit/{{ intervention.id_beneficiaries_fk }}"
+          routerLink="../edit/{{ intervention.id_beneficiary }}"
         >
           Edit
         </button>

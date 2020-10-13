@@ -1,6 +1,6 @@
 import { BeneficiariesService } from './../_services/beneficiaries.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-beneficiary-create',
@@ -66,12 +66,11 @@ export class BeneficiaryCreateComponent implements OnInit {
     { id: 1, name: 'Yes' },
     { id: 2, name: 'No' },
   ];
-  successMsg: string = "Beneficiary information successfully submitted"
-  errorMsg: any;
+  successMsg: string = ""
+  errorMsg: any = "";
 
   individual_num_prefix: string = "DRC"
 
-  test_number: number = 4
   test_number2: number = 56
   test_number2Pre: string;
 
@@ -96,11 +95,11 @@ export class BeneficiaryCreateComponent implements OnInit {
     
    this.bioSection = this.fb.group({
       individual_number: [''],
-      beneficiary_firstName: [''],
-      beneficiary_lastName: [''],
-      id_number: [''],
+      beneficiary_firstName: [null, Validators.required],
+      beneficiary_lastName: [null, Validators.required],
+      id_number: [null, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       sex: [''],
-      age: [''],
+      age: [null, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
       disability_status: [''],
       type_disability: [''],
       status: [''],
@@ -125,7 +124,7 @@ export class BeneficiaryCreateComponent implements OnInit {
       // })
     });
 
-    console.log("Number 1", this.zeroPad(this.test_number,8))
+   
     this.test_number2Pre = this.individual_num_prefix + "-" + this.zeroPad(this.test_number2,8)
 
     this.bioSection.patchValue({
@@ -137,6 +136,7 @@ export class BeneficiaryCreateComponent implements OnInit {
   get f(){
     return this.bioSection.controls
   }
+
 
   callingFunction() {
     var individual_number = this.bioSection.value.individual_number;
@@ -186,8 +186,9 @@ export class BeneficiaryCreateComponent implements OnInit {
     };
     console.log(this.bioSection.value);
     this.beneficiariesService.addBeneficiary(newBiodata).subscribe((data) => {
+      this.successMsg ="Successfully submitted"
       console.log(data);
       this.ngOnInit();
-    });
+    },err =>this.errorMsg = err);
   }
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 03, 2020 at 08:55 AM
--- Server version: 8.0.20-0ubuntu0.19.10.1
--- PHP Version: 7.3.11-0ubuntu0.19.10.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 13, 2020 at 07:00 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,35 +29,35 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dims_beneficiaries` (
-  `id` int NOT NULL,
+  `id_beneficiary` int(11) NOT NULL,
   `individual_number` varchar(40) NOT NULL,
-  `beneficiary_firstName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `beneficiary_lastName` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `beneficiary_firstName` varchar(50) DEFAULT NULL,
+  `beneficiary_lastName` varchar(40) DEFAULT NULL,
   `date_enrolled` date DEFAULT NULL,
-  `project` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `id_number` int DEFAULT NULL,
-  `telephone_number` int DEFAULT NULL,
-  `sex` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `age` int DEFAULT NULL,
-  `hh_head` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `disability_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `type_disability` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nationality` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `camp` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `block` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `reffered_to` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `reffered_from` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `group_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `hh_male_size` int DEFAULT NULL,
-  `hh_female_size` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `project` varchar(20) DEFAULT NULL,
+  `id_number` int(11) DEFAULT NULL,
+  `telephone_number` int(11) DEFAULT NULL,
+  `sex` varchar(6) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `hh_head` varchar(3) DEFAULT NULL,
+  `disability_status` varchar(20) DEFAULT NULL,
+  `type_disability` varchar(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `nationality` varchar(20) DEFAULT NULL,
+  `camp` varchar(10) DEFAULT NULL,
+  `block` varchar(3) DEFAULT NULL,
+  `reffered_to` varchar(20) DEFAULT NULL,
+  `reffered_from` varchar(20) DEFAULT NULL,
+  `group_name` varchar(40) DEFAULT NULL,
+  `hh_male_size` int(11) DEFAULT NULL,
+  `hh_female_size` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_beneficiaries`
 --
 
-INSERT INTO `dims_beneficiaries` (`id`, `individual_number`, `beneficiary_firstName`, `beneficiary_lastName`, `date_enrolled`, `project`, `id_number`, `telephone_number`, `sex`, `age`, `hh_head`, `disability_status`, `type_disability`, `status`, `nationality`, `camp`, `block`, `reffered_to`, `reffered_from`, `group_name`, `hh_male_size`, `hh_female_size`) VALUES
+INSERT INTO `dims_beneficiaries` (`id_beneficiary`, `individual_number`, `beneficiary_firstName`, `beneficiary_lastName`, `date_enrolled`, `project`, `id_number`, `telephone_number`, `sex`, `age`, `hh_head`, `disability_status`, `type_disability`, `status`, `nationality`, `camp`, `block`, `reffered_to`, `reffered_from`, `group_name`, `hh_male_size`, `hh_female_size`) VALUES
 (8, '096789456', 'Njoroge', 'Kinyua', '2020-06-23', 'Danida,UNHCR', 457890, 973457862, 'Male', 62, 'No', 'Disabled', '', 'Refugee', 'Rwandan', 'Hagadera', 'C3', 'Livelihoods', 'Protection', 'kiambavu', 2, 3),
 (2, '12345', 'Harun', 'Daud', NULL, 'Danida', 12345, 1234567, 'Male', 23, 'Yes', 'Disabled', 'refugee', '', 'kenyan', 'Dagahaley', 'A1', 'Protection', 'Livelihoods', 'jinga', 12, 4),
 (4, '12347', 'Galgalo', 'harun', NULL, 'Danida', 12345, 1234567, 'Male', 24, 'Yes', 'Disabled', 'deaf', 'refugee', 'rwandees', 'Ifo', 'B4', 'Protection', 'Livelihoods', 'ninja', 24, 5),
@@ -74,11 +74,11 @@ INSERT INTO `dims_beneficiaries` (`id`, `individual_number`, `beneficiary_firstN
 --
 
 CREATE TABLE `dims_lievlihoods_income` (
-  `id` int NOT NULL,
-  `id_livelihoods_fk` int NOT NULL,
-  `income` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_livelihoods_fk` int(11) NOT NULL,
+  `income` int(11) NOT NULL,
   `month` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -87,10 +87,10 @@ CREATE TABLE `dims_lievlihoods_income` (
 --
 
 CREATE TABLE `dims_livelihoods` (
-  `id` int NOT NULL,
-  `id_beneficiaries_fk` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_beneficiaries_fk` int(11) NOT NULL,
   `type_support` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_livelihoods`
@@ -109,19 +109,19 @@ INSERT INTO `dims_livelihoods` (`id`, `id_beneficiaries_fk`, `type_support`) VAL
 --
 
 CREATE TABLE `dims_livelihoods_dates` (
-  `id` int NOT NULL,
-  `id_beneficiaries_fk` int NOT NULL,
-  `id_intervention_fk` int NOT NULL,
-  `date_enroled` date NOT NULL,
-  `completion_date` date NOT NULL,
-  `drop_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL,
+  `id_beneficiaries_fk` int(11) NOT NULL,
+  `id_intervention_fk` int(11) NOT NULL,
+  `l_date_enroled` date NOT NULL,
+  `l_completion_date` date NOT NULL,
+  `l_drop_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_livelihoods_dates`
 --
 
-INSERT INTO `dims_livelihoods_dates` (`id`, `id_beneficiaries_fk`, `id_intervention_fk`, `date_enroled`, `completion_date`, `drop_date`) VALUES
+INSERT INTO `dims_livelihoods_dates` (`id`, `id_beneficiaries_fk`, `id_intervention_fk`, `l_date_enroled`, `l_completion_date`, `l_drop_date`) VALUES
 (1, 2, 15, '2020-06-30', '2020-06-30', '2020-06-30');
 
 -- --------------------------------------------------------
@@ -131,9 +131,9 @@ INSERT INTO `dims_livelihoods_dates` (`id`, `id_beneficiaries_fk`, `id_intervent
 --
 
 CREATE TABLE `dims_livelihoods_support` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `type_supp` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_livelihoods_support`
@@ -167,10 +167,10 @@ INSERT INTO `dims_livelihoods_support` (`id`, `type_supp`) VALUES
 --
 
 CREATE TABLE `dims_protection` (
-  `id_protection` int NOT NULL,
-  `id_beneficiary_fk` int NOT NULL,
+  `id_protection` int(11) NOT NULL,
+  `id_beneficiary_fk` int(11) NOT NULL,
   `protection_support_recieved` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_protection`
@@ -189,19 +189,19 @@ INSERT INTO `dims_protection` (`id_protection`, `id_beneficiary_fk`, `protection
 --
 
 CREATE TABLE `dims_protection_dates` (
-  `id_dates` int NOT NULL,
-  `id_beneficiary_fk` int NOT NULL,
-  `id_intervention_fk` int NOT NULL,
-  `date_enroled` date NOT NULL,
-  `completion_date` date NOT NULL,
-  `drop_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_dates` int(11) NOT NULL,
+  `id_beneficiary_fk` int(11) NOT NULL,
+  `id_intervention_fk` int(11) NOT NULL,
+  `p_date_enroled` date NOT NULL,
+  `p_completion_date` date NOT NULL,
+  `p_drop_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_protection_dates`
 --
 
-INSERT INTO `dims_protection_dates` (`id_dates`, `id_beneficiary_fk`, `id_intervention_fk`, `date_enroled`, `completion_date`, `drop_date`) VALUES
+INSERT INTO `dims_protection_dates` (`id_dates`, `id_beneficiary_fk`, `id_intervention_fk`, `p_date_enroled`, `p_completion_date`, `p_drop_date`) VALUES
 (1, 4, 3, '2020-06-02', '2020-06-22', '2020-06-30'),
 (4, 7, 6, '2020-06-30', '2020-06-30', '2020-06-30');
 
@@ -212,9 +212,9 @@ INSERT INTO `dims_protection_dates` (`id_dates`, `id_beneficiary_fk`, `id_interv
 --
 
 CREATE TABLE `dims_protection_support` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `type_support` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_protection_support`
@@ -246,14 +246,14 @@ INSERT INTO `dims_protection_support` (`id`, `type_support`) VALUES
 --
 
 CREATE TABLE `dims_users` (
-  `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) NOT NULL,
   `roles` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dims_users`
@@ -266,7 +266,8 @@ INSERT INTO `dims_users` (`id`, `name`, `department`, `title`, `email`, `passwor
 (4, 'Sarah Iman', 'Livelihoods', 'M&E', 'sarah@sarah.com', '$2a$10$Och3AljrdYx5Gv/1ew4t6OCe7/Pxyd7C3uNfPZn5EAAaBiu4pRVBC', 'USER'),
 (5, 'user2', 'Livelihoods', 'user2', 'user2@test.com', '$2a$10$KbE.ioJgxGwFU6k/KY5VnebvD/Pr4Wy2JMNyQisoMn3CYDueGcr5m', 'USER'),
 (6, 'benson', 'Protection', 'assistant', 'bvendon@gmail.com', '$2a$10$U6OUroSAXXCXBl0vPNOzqOuy1F9L8IsLoWLC1pP7E84Mwwe5MTuJu', 'LIVELIHOODS'),
-(7, 'Caren', 'Protection', 'officer', 'caren@gmail.com', '$2a$10$LjAJxe1YP/tiun/Dpoghlu78VXyF/RNw7yMNdy/MhRpITMeyJSc9m', 'PROTECTION');
+(7, 'Caren', 'Protection', 'officer', 'caren@gmail.com', '$2a$10$LjAJxe1YP/tiun/Dpoghlu78VXyF/RNw7yMNdy/MhRpITMeyJSc9m', 'PROTECTION'),
+(8, 'steve', 'Admin', 'Admin', 'steve@gmail.com', '$2a$10$.yioQM4/i5NuMl9jEPgqZuQFUSvTk33n4yVERmtX60aRJH8dGZxam', 'ADMIN');
 
 --
 -- Indexes for dumped tables
@@ -277,7 +278,7 @@ INSERT INTO `dims_users` (`id`, `name`, `department`, `title`, `email`, `passwor
 --
 ALTER TABLE `dims_beneficiaries`
   ADD PRIMARY KEY (`individual_number`(10)),
-  ADD KEY `id` (`id`) USING BTREE;
+  ADD KEY `id` (`id_beneficiary`) USING BTREE;
 
 --
 -- Indexes for table `dims_lievlihoods_income`
@@ -342,55 +343,55 @@ ALTER TABLE `dims_users`
 -- AUTO_INCREMENT for table `dims_beneficiaries`
 --
 ALTER TABLE `dims_beneficiaries`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_beneficiary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `dims_lievlihoods_income`
 --
 ALTER TABLE `dims_lievlihoods_income`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dims_livelihoods`
 --
 ALTER TABLE `dims_livelihoods`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dims_livelihoods_dates`
 --
 ALTER TABLE `dims_livelihoods_dates`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dims_livelihoods_support`
 --
 ALTER TABLE `dims_livelihoods_support`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `dims_protection`
 --
 ALTER TABLE `dims_protection`
-  MODIFY `id_protection` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_protection` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `dims_protection_dates`
 --
 ALTER TABLE `dims_protection_dates`
-  MODIFY `id_dates` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dates` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `dims_protection_support`
 --
 ALTER TABLE `dims_protection_support`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `dims_users`
 --
 ALTER TABLE `dims_users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -400,33 +401,33 @@ ALTER TABLE `dims_users`
 -- Constraints for table `dims_lievlihoods_income`
 --
 ALTER TABLE `dims_lievlihoods_income`
-  ADD CONSTRAINT `dims_lievlihoods_income_ibfk_1` FOREIGN KEY (`id_livelihoods_fk`) REFERENCES `dims_livelihoods_support` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dims_lievlihoods_income_ibfk_1` FOREIGN KEY (`id_livelihoods_fk`) REFERENCES `dims_livelihoods_support` (`id`);
 
 --
 -- Constraints for table `dims_livelihoods`
 --
 ALTER TABLE `dims_livelihoods`
-  ADD CONSTRAINT `dims_livelihoods_ibfk_1` FOREIGN KEY (`id_beneficiaries_fk`) REFERENCES `dims_beneficiaries` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dims_livelihoods_ibfk_1` FOREIGN KEY (`id_beneficiaries_fk`) REFERENCES `dims_beneficiaries` (`id_beneficiary`);
 
 --
 -- Constraints for table `dims_livelihoods_dates`
 --
 ALTER TABLE `dims_livelihoods_dates`
-  ADD CONSTRAINT `dims_livelihoods_dates_ibfk_1` FOREIGN KEY (`id_beneficiaries_fk`) REFERENCES `dims_beneficiaries` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `dims_livelihoods_dates_ibfk_2` FOREIGN KEY (`id_intervention_fk`) REFERENCES `dims_livelihoods` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dims_livelihoods_dates_ibfk_1` FOREIGN KEY (`id_beneficiaries_fk`) REFERENCES `dims_beneficiaries` (`id_beneficiary`),
+  ADD CONSTRAINT `dims_livelihoods_dates_ibfk_2` FOREIGN KEY (`id_intervention_fk`) REFERENCES `dims_livelihoods` (`id`);
 
 --
 -- Constraints for table `dims_protection`
 --
 ALTER TABLE `dims_protection`
-  ADD CONSTRAINT `dims_protection_ibfk_1` FOREIGN KEY (`id_beneficiary_fk`) REFERENCES `dims_beneficiaries` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dims_protection_ibfk_1` FOREIGN KEY (`id_beneficiary_fk`) REFERENCES `dims_beneficiaries` (`id_beneficiary`);
 
 --
 -- Constraints for table `dims_protection_dates`
 --
 ALTER TABLE `dims_protection_dates`
-  ADD CONSTRAINT `dims_protection_dates_ibfk_1` FOREIGN KEY (`id_beneficiary_fk`) REFERENCES `dims_beneficiaries` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `dims_protection_dates_ibfk_2` FOREIGN KEY (`id_intervention_fk`) REFERENCES `dims_protection_support` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `dims_protection_dates_ibfk_1` FOREIGN KEY (`id_beneficiary_fk`) REFERENCES `dims_beneficiaries` (`id_beneficiary`),
+  ADD CONSTRAINT `dims_protection_dates_ibfk_2` FOREIGN KEY (`id_intervention_fk`) REFERENCES `dims_protection_support` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -68,27 +68,27 @@
       <td class="text-center">
         <button
           class="btn btn-outline-secondary fa fa-external-link"
-          routerLink="../details/{{ beneficiary.id }}"
+          routerLink="../details/{{ beneficiary.id_beneficiary }}"
         >
           View
         </button>
         <button
           class="btn btn-outline-info fa fa-pencil-square-o"
-          routerLink="../edit/{{ beneficiary.id }}"
+          routerLink="../edit/{{ beneficiary.id_beneficiary }}"
         >
           Edit
         </button>
         <button
           class="btn btn-outline-success fa fa-plus"
           *ngIf="auth.isLivelihoods() || auth.isAdmin()"
-          routerLink="../../Livelihoods/edit/{{ beneficiary.id }}"
+          routerLink="../../Livelihoods/edit/{{ beneficiary.id_beneficiary }}"
         >
           Add Livehoods Intervention
         </button>
         <button
           class="btn btn-outline-success fa fa-plus"
           *ngIf="auth.isProtection() || auth.isAdmin()"
-          routerLink="../../Protection/edit/{{ beneficiary.id }}"
+          routerLink="../../Protection/edit/{{ beneficiary.id_beneficiary }}"
         >
           Add Protection Intervention
         </button>

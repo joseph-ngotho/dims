@@ -19,7 +19,7 @@ router.get("/beneficiaries", (req, res, next) => {
 //retrieving beneficiary by id
 router.get("/beneficiaries/:id", (req, res, next) => {
   mysqlConnection.query(
-    "SELECT * FROM dims_beneficiaries WHERE id = ? ",
+    "SELECT * FROM dims_beneficiaries WHERE id_beneficiary = ? ",
     [req.params.id],
     (err, rows, fields) => {
       if (!err) res.json(rows);
@@ -32,11 +32,11 @@ router.get("/beneficiaries/:id", (req, res, next) => {
 router.get("/beneficiary/:id", (req, res, next) => {
   mysqlConnection.query(
     "SELECT * FROM dims_beneficiaries b LEFT JOIN dims_livelihoods l \
-  ON l.id_beneficiaries_fk = b.id LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
+  ON l.id_beneficiaries_fk = b.id_beneficiary LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
   LEFT JOIN dims_livelihoods_dates ld ON l.id = ld.id_intervention_fk\
   LEFT JOIN dims_protection p \
-      ON p.id_beneficiary_fk = b.id LEFT JOIN dims_protection_dates pd ON p.id_protection = pd.id_intervention_fk\
-  WHERE b.id= ? ",
+      ON p.id_beneficiary_fk = b.id_beneficiary LEFT JOIN dims_protection_dates pd ON p.id_protection = pd.id_intervention_fk\
+  WHERE b.id_beneficiary= ? ",
     [req.params.id],
     (err, rows, fields) => {
       if (!err) res.json(rows);
@@ -135,7 +135,7 @@ router.get("/livelihoods", (req, res, next) => {
 
   mysqlConnection.query(
     "SELECT * FROM dims_livelihoods l LEFT JOIN dims_beneficiaries  b \
-    ON l.id_beneficiaries_fk = b.id LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
+    ON l.id_beneficiaries_fk = b.id_beneficiary LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
     LEFT JOIN dims_livelihoods_dates d ON l.id = d.id_intervention_fk",
     (err, rows, fields) => {
       if (!err) res.json(rows);
@@ -148,7 +148,7 @@ router.get("/livelihoods", (req, res, next) => {
 router.get("/livelihoods/:id", (req, res, next) => {
   mysqlConnection.query(
     "SELECT * FROM dims_livelihoods l LEFT JOIN dims_beneficiaries  b \
-    ON l.id_beneficiaries_fk = b.id LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
+    ON l.id_beneficiaries_fk = b.id_beneficiary LEFT JOIN dims_livelihoods_support s ON l.type_support = s.id \
     LEFT JOIN dims_livelihoods_dates d ON l.id = d.id_intervention_fk\
 		WHERE l.id_beneficiaries_fk= ? ",
     [req.params.id],
@@ -260,7 +260,7 @@ router.put("/livelihoods_dates/:id", (req, res, next) => {
 router.get("/protection", (req, res, next) => {
   mysqlConnection.query(
     "SELECT * FROM dims_protection p LEFT JOIN dims_beneficiaries  b \
-      ON p.id_beneficiary_fk = b.id LEFT JOIN dims_protection_dates d ON p.id_protection = d.id_intervention_fk",
+      ON p.id_beneficiary_fk = b.id_beneficiary LEFT JOIN dims_protection_dates d ON p.id_protection = d.id_intervention_fk",
     (err, rows, fields) => {
       if (!err) res.json(rows);
       else res.json(err);

@@ -1,8 +1,8 @@
 <form [formGroup]="bioSection" (ngSubmit)="callingFunction()">
   <div class="row">
     <div class="col-sm-12 col-lg-6">
-     <div class="alert alert-danger d-flex justify-content-between"><p>This is danger</p> <i class="fa fa-close"></i> </div>
-     <div class="alert alert-success">This is success</div>
+     <div class="alert alert-danger d-flex justify-content-between" *ngIf="errorMsg"><p>{{errorMsg}}</p></div>
+     <div class="alert alert-success" *ngIf="successMsg"><p>{{successMsg}}</p></div>
     </div>
   </div>
   <div class="card">
@@ -19,7 +19,7 @@
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
+                #
               </div>
             </div>
             <input
@@ -28,7 +28,6 @@
               id="individual_number"
               type="text"
               class="form-control"
-              placeholder="Enter beneficiary individual number"
               disabled
             />
           </div>
@@ -37,49 +36,48 @@
         <div class="col-sm-12 col-lg-4">
           <label for="">First Name:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
             <input
               formControlName="beneficiary_firstName"
-              name="firstname"
-              id="firstname"
+              name="beneficiary_firstName"
+              id="beneficiary_firstName"
               type="text"
               class="form-control"
               placeholder="Enter beneficiary first name"
             />
           </div>
+          <div *ngIf="f.beneficiary_firstName.invalid && (f.beneficiary_firstName.dirty || f.beneficiary_firstName.touched)" class="alert alert-danger validation">
+            <div class="alertMsg" *ngIf="f.beneficiary_firstName.errors.required">
+             First name is required
+            </div>
+            </div>
+            
         </div>
       
         <div class="col-sm-12 col-lg-4">
           <label for="">Last Name:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
+            
             <input
               formControlName="beneficiary_lastName"
-              name="lastname"
-              id="lastame"
+              name="beneficiary_lastName"
+              id="beneficiary_lastName"
               type="text"
               class="form-control"
               placeholder="Enter beneficiary first name"
             />
           </div>
+          <div *ngIf="f.beneficiary_lastName.invalid && (f.beneficiary_lastName.dirty || f.beneficiary_lastName.touched)" class="alert alert-danger validation">
+            <div class="alertMsg" *ngIf="f.beneficiary_lastName.errors.required">
+             Last name is required
+            </div>
+            
+        </div>
         </div>
       
         <div class="col-sm-12 col-lg-3">
           <label for="">Id Number (if applicable):</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
+            
             <input
               formControlName="id_number"
               name="id number"
@@ -89,16 +87,20 @@
               placeholder="Enter beneficiary ID number if applicable"
             />
           </div>
+          <div *ngIf="f.id_number.invalid && (f.id_number.dirty || f.id_number.touched)" class="alert alert-danger validation">
+            <div class="alertMsg" *ngIf="f.id_number.errors.required">
+            ID number is required
+            </div>
+            <div class="alertMsg" *ngIf="f.id_number.errors.pattern">
+              Only numerical values permitted
+             </div>
+            
+        </div>
         </div>
       
         <div class="col-sm-12 col-lg-3">
           <label for="">Sex:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
             <select formControlName="sex" name="sex" id="sex" class="form-control">
               <option [value]="_sex.name" *ngFor="let _sex of sexes"
                 >{{ _sex.name }}
@@ -110,11 +112,7 @@
         <div class="col-sm-12 col-lg-3">
           <label for="">Age:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
+           
             <input
               formControlName="age"
               name="age"
@@ -124,16 +122,16 @@
               placeholder="Enter beneficiary age"
             />
           </div>
+          <div *ngIf="f.id_number.invalid && (f.id_number.dirty || f.id_number.touched)" class="alert alert-danger validation">
+            <div class="alertMsg" *ngIf="f.id_number.errors.pattern">
+              Only numerical values permitted
+            </div>
         </div>
+      </div>
       
         <div class="col-sm-12 col-lg-3">
           <label for="">Disability status:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
             <select
               formControlName="disability_status"
               name="disability_status"
@@ -152,11 +150,6 @@
         <div class="col-sm-12 col-lg-4">
           <label for="">Type of disability (if applicable):</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
             <input
               formControlName="type_disability"
               name="type disability"
@@ -171,11 +164,6 @@
         <div class="col-sm-12 col-lg-4">
           <label for="">Status (Refugee/Host):</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
             <input
               formControlName="status"
               name="type status"
@@ -190,12 +178,7 @@
         <div class="col-sm-12 col-lg-4">
           <label for="">Nationality:</label>
           <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fa fa-asterisk" aria-hidden="true"></i>
-              </div>
-            </div>
-            <input
+           <input
               formControlName="nationality"
               name="nationality"
               id="nationality"
@@ -220,11 +203,6 @@
     <div class="col-sm-12 col-lg-4">
       <label for="">Beneficiary telephone number:</label>
       <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-asterisk" aria-hidden="true"></i>
-          </div>
-        </div>
         <input
           formControlName="telephone_number"
           name="telephone number"
@@ -239,11 +217,6 @@
     <div class="col-sm-12 col-lg-4">
       <label for="">Camp:</label>
       <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-asterisk" aria-hidden="true"></i>
-          </div>
-        </div>
         <select formControlName="camp" name="camp" id="camp" class="form-control">
           <option [value]="_camp.name" *ngFor="let _camp of camp"
             >{{ _camp.name }}
@@ -255,12 +228,7 @@
     <div class="col-sm-12 col-lg-4">
       <label for="">Block:</label>
       <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-asterisk" aria-hidden="true"></i>
-          </div>
-        </div>
-        <select formControlName="block" name="block" id="block" class="form-control">
+         <select formControlName="block" name="block" id="block" class="form-control">
           <option [value]="_block.name" *ngFor="let _block of block"
             >{{ _block.name }}
           </option>
@@ -271,11 +239,6 @@
     <div class="col-sm-12 col-lg-4">
       <label for="">Reffered To:</label>
       <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-asterisk" aria-hidden="true"></i>
-          </div>
-        </div>
         <select
           formControlName="reffered_to"
           name="reffered to"
@@ -294,11 +257,6 @@
     <div class="col-sm-12 col-lg-4">
       <label for="">Reffered From:</label>
       <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fa fa-asterisk" aria-hidden="true"></i>
-          </div>
-        </div>
         <select
           formControlName="reffered_from"
           name="reffered to"
@@ -327,12 +285,7 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Date Enrolled:</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
-          <input
+           <input
             formControlName="date_enroled"
             name="enroled date"
             id="enroled date"
@@ -346,11 +299,6 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Project:</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
           <select multiple formControlName="project" name="project" id="project" class="form-control">
             <option [value]="_project.name" *ngFor="let _project of project"
               >{{ _project.name }}
@@ -362,12 +310,7 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Household head:</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
-          <select formControlName="hh_head" name="hh head" id="hh hh_head" class="form-control">
+         <select formControlName="hh_head" name="hh head" id="hh hh_head" class="form-control">
             <option [value]="_hhhead.name" *ngFor="let _hhhead of hhhead"
               >{{ _hhhead.name }}
             </option>
@@ -378,11 +321,6 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Group Name (if a member):</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
           <input
             formControlName="group_name"
             name="group name"
@@ -397,11 +335,6 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Household male size:</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
           <input
             formControlName="hh_male_size"
             name="hhmalesize"
@@ -416,11 +349,6 @@
       <div class="col-sm-12 col-lg-4">
         <label for="">Household female size:</label>
         <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fa fa-asterisk" aria-hidden="true"></i>
-            </div>
-          </div>
           <input
             formControlName="hh_female_size"
             name="hhfemalesize"
@@ -436,12 +364,13 @@
   </div>
   
   <div class="row">
-  
-  
+  <div class="col-sm-3 pb-5">
+    <button class="btn btn-primary p-3 d-block w-100" type="submit" [disabled]="!bioSection.valid">
+      Save
+    </button>
+  </div>
 
-  <button class="btn btn-primary" type="submit" [disabled]="!bioSection.valid">
-    Save
-  </button>
+  
 
 </div>
 </form>
